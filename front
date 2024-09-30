@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Choris de Marcelo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+
+
+
+    <script src="scripts.js"></script>
+
+
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                Los Choris de Marcelo
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#menu">Menú</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner" id="inicio">
+        <div class="banner-content">
+            <h1>¡Bienvenidos a Los Choris de Marcelo!</h1>
+            <p>El mejor sabor a la parrilla que vas encontrar</p>
+            <a href="#menu">Ver Menú</a>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="sobre-nosotros">
+        <div class="container">
+            <div class="content">
+                <img src="img/nosotros.jpeg" alt="Nosotros">
+                <div class="text">
+                    <h2>Sobre Nosotros</h2>
+                    <p>En <strong>Los Choris de Marcelo</strong> nos especializamos en brindar la mejor experiencia gastronómica con nuestros exquisitos platos a la parrilla. Con más de 20 años de experiencia, combinamos tradición y calidad en cada bocado.</p>
+                    <p>Nuestro compromiso es ofrecer productos frescos y de la mejor calidad, preparados con pasión y dedicación por nuestro equipo experto en asados.</p>
+                    <p>¡Ven y disfruta de un ambiente familiar y acogedor mientras degustas nuestros deliciosos platos!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Botón para abrir el carrito -->
+<button id="abrir-carrito" class="carrito-btn">🛒</button>
+
+<!-- Carrito de compras flotante -->
+<div id="carrito-flotante" class="carrito-flotante">
+    <button id="cerrar-carrito" class="carrito-btn cerrar-btn">✖</button>
+    <h2>Tu Carrito</h2>
+    <div id="carrito-items"></div>
+    <div class="carrito-footer">
+        <p id="carrito-total">Total: $0.00</p>
+        <button id="vaciar-carrito" class="carrito-btn vaciar-btn">Vaciar Carrito</button>
+    </div>
+</div>
+
+
+
+
+    <!-- Menú -->
+    <section id="menu">
+        <div class="container">
+            <h2>Nuestro Menú</h2>
+            <div class="menu-categorias">
+                <button class="active" data-category="todos">Todos</button>
+                <button data-category="sanduiches">Sándwiches</button>
+                <button data-category="papas">Papas</button>
+                <button data-category="bebidas">Bebidas</button>
+                <button data-category="postres">Postres</button>
+            </div>
+            <div class="menu-items">
+                <!-- Sándwiches -->
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/choripan.jpg">
+                    <div class="info">
+                        <h3>Choripán Clásico</h3>
+                        <p>Chorizo a la parrilla en pan francés con chimichurri casero.</p>
+                        <span>$1.600
+                        </span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/bondiola.jpg" alt="Sándwich de Bondiola">
+                    <div class="info">
+                        <h3>Bondiola</h3>
+                        <p>Jugosa bondiola asada con salsa criolla en pan artesanal.</p>
+                        <span>$3.100</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/lomito.jpg" alt="Lomito Completo">
+                    <div class="info">
+                        <h3>Lomito </h3>
+                        <p>Filete de res, tomate, lechuga.</p>
+                        <span>$4.300</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/marucha.jpg">
+                    <div class="info">
+                        <h3>Marucha</h3>
+                        <p>pp</p>
+                        <span>$3.100</span>   
+                        <button class="comprar-btn">Comprar</button>      
+                    
+                    </div>
+                </div>
+                    <div class="menu-item" data-category="sanduiches">
+                    <img src="img/costilla.jpg">
+                    <div class="info">
+                        <h3>Costilla deshuesada</h3>
+                        <p>Costilla deshueada con tomate, lechuga, chimichurri y mayonesa.</p>
+                        <span>$3.100</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/milanesa.jpg">
+                    <div class="info">
+                        <h3>Milanesa de ternera</h3>
+                        <p>Sanguche de milanesa de ternera con tomate y lechuga.</p>
+                        <span>$4.100</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="sanduiches">
+                        <img src="img/hamburguesa.jpg">
+                        <div class="info">
+                            <h3>Hamburguesa</h3>
+                            <p>Hamburguesa con lechuga, tomate y aderezo a eleccion.</p>
+                            <span>$2900</span>
+                            <button class="comprar-btn">Comprar</button>
+                        </div>
+                </div>
+
+
+
+
+
+
+
+                <!-- Bebidas -->
+                <div class="menu-item" data-category="bebidas">
+                    <img src="img/coca500.jpg" alt="Coca-Cola 500ml">
+                    <div class="info">
+                        <h3>Coca-Cola</h3>
+                        <p>Coca-Cola 500ml.</p>
+                        <span>$1.500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="bebidas">
+                    <img src="img/fanta.jpg" alt="Fanta">
+                    <div class="info">
+                        <h3>Fanta</h3>
+                        <p>Fanta 500ml.</p>
+                        <span>$1.500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="bebidas">
+                    <img src="img/sprite.jpg" alt="Sprite">
+                    <div class="info">
+                        <h3>Fanta</h3>
+                        <p>Sprite 500ml.</p>
+                        <span>$1.500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="bebidas">
+                    <img src="img/imperial.jpg" alt="Cerveza">
+                    <div class="info">
+                        <h3>Cerveza Imperial</h3>
+                        <p>Cerveza Imperial Golden 710ml.</p>
+                        <span>$2.500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="papas">
+                    <img src="">
+                    <div class="info">
+                        <h3>Cono de Papas</h3>
+                        <span>$2.300</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="papas">
+                    <img src="">
+                    <div class="info">
+                        <h3>Porcion de Papas</h3>
+                        <span>$2.900</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="papas">
+                    <img src="">
+                    <div class="info">
+                        <h3>Porcion de Papas con Cheddar</h3>
+                        <span>$3.400</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <!-- Postre -->
+                <div class="menu-item" data-category="postres">
+                    <img src="" alt="Postres">
+                    <div class="info">
+                        <h3>Postres</h3>
+                        <p>Chocotorta, Lemon Pie, Choco oreo, Chaja.</p>
+                        <span>$3.500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+<br>
+<br>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <p>&copy; 2024 Los Choris de Marcelo. Todos los derechos reservados.</p>
+            </div>
+            <div class="social-media">
+                <a href="https://www.facebook.com/tuusuario" target="_blank" title="Síguenos en Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/loschoripanesdemarcelo/" target="_blank" title="Síguenos en Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/1234567890" target="_blank" title="Contáctanos en WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://twitter.com/tuusuario" target="_blank" title="Síguenos en Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carrito = [];
+            const carritoItems = document.getElementById('carrito-items');
+            const carritoTotal = document.getElementById('carrito-total');
+            const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+            const carritoFlotante = document.getElementById('carrito-flotante');
+            const abrirCarritoBtn = document.getElementById('abrir-carrito');
+            const cerrarCarritoBtn = document.getElementById('cerrar-carrito');
+        
+            function actualizarCarrito() {
+                carritoItems.innerHTML = '';
+                let total = 0;
+                carrito.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('carrito-item');
+                    itemDiv.innerHTML = `
+                        <span>${item.nombre}</span>
+                        <span>$${item.precio.toFixed(2)}</span>
+                    `;
+                    carritoItems.appendChild(itemDiv);
+                    total += item.precio;
+                });
+                carritoTotal.textContent = `Total: $${total.toFixed(2)}`;
+            }
+        
+            document.querySelectorAll('.comprar-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const itemDiv = e.target.closest('.menu-item');
+                    const nombre = itemDiv.querySelector('h3').textContent;
+                    const precio = parseFloat(itemDiv.querySelector('span').textContent.replace('$', '').replace(',', ''));
+        
+                    carrito.push({ nombre, precio });
+                    actualizarCarrito();
+                });
+            });
+        
+            vaciarCarritoBtn.addEventListener('click', () => {
+                carrito.length = 0; // Limpiar el array del carrito
+                actualizarCarrito();
+            });
+        
+            abrirCarritoBtn.addEventListener('click', () => {
+                carritoFlotante.classList.add('show');
+            });
+        
+            cerrarCarritoBtn.addEventListener('click', () => {
+                carritoFlotante.classList.remove('show');
+            });
+        });
+        </script>
+        
+        
+        
+        
+  
+</body>
+</html>
