@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pedido</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Main stylesheet -->
+    <link rel="stylesheet" href="estilo1.css"> <!-- Responsive stylesheet -->
+</head>
+<body>
+    <div class="container">
+        <h2>Realiza tu Pedido</h2>
+        <form id="orderForm" action="ver_pedidos.php" method="POST">
+            <!-- Datos Personales -->
+            <div class="form-group">
+                <label for="firstName">Nombre:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Apellido:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+
+
+            <!-- Opciones de Retiro o Envío -->
+            <div class="form-group delivery-options">
+                <div>
+                    <input type="radio" id="pickUp" name="deliveryOption" value="pickUp">
+                    <label for="pickUp">Retiro en el local</label>
+                </div>
+                <div>
+                    <input type="radio" id="delivery" name="deliveryOption" value="delivery">
+                    <label for="delivery">Envío a domicilio</label>
+                </div>
+            </div>
+            <div id="addressContainer" class="form-group">
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" name="address" placeholder="Dirección de envío">
+            </div>
+
+
+            <!-- Método de Pago -->
+            <div class="form-group">
+                <label for="paymentMethod">Método de Pago:</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="">Seleccione un método</option>
+                    <option value="cash">Efectivo</option>
+                    <option value="debitCard">Tarjeta de Débito</option>
+                    <option value="mercadoPago">Mercado Pago</option>
+                </select>
+            </div>
+
+
+            <button type="submit" class="btn-submit">Enviar Pedido</button>
+        </form>
+    </div>
+
+
+    <script>
+        document.getElementById('orderForm').addEventListener('change', function (event) {
+            if (event.target.name === 'deliveryOption') {
+                const addressContainer = document.getElementById('addressContainer');
+                if (event.target.value === 'delivery') {
+                    addressContainer.style.display = 'block';
+                } else {
+                    addressContainer.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+
