@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pedido</title>
+    <style>
+       body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgb(255, 255, 255), red, black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            position: relative;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            display: flex; /* Flexbox para centrar el contenido */
+            flex-direction: column; /* Apilar elementos verticalmente */
+            align-items: center; /* Centrar horizontalmente */
+        }
+
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%; /* Asegura que los grupos de formulario ocupen el 100% del ancho */
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+
+        .delivery-options {
+            margin: 15px 0;
+        }
+
+
+        #addressContainer {
+            display: none;
+        }
+
+
+        .logo {
+            display: block; /* Hacer que el logo ocupe toda la línea */
+            margin: 0 auto 20px; /* Centrar el logo y margen inferior */
+            width: 50px; /* Ancho del logo */
+        }
+
+
+        @media (max-width: 400px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <form id="orderForm" action="ver_pedidos.php" method="POST">
+            <img src="images.jpg" alt="Logo" class="logo"> <!-- Logo dentro del formulario -->
+            <h2>Formulario de Pedido</h2>
+            <div class="form-group">
+                <label for="firstName">Nombre:</label>
+                <input type="text" id="firstName" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Apellido:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+
+
+            <div class="form-group delivery-options">
+                <label>Opciones de Entrega:</label>
+                <div>
+                    <input type="radio" id="pickUp" name="deliveryOption" value="pickUp">
+                    <label for="pickUp">Retiro en el local</label>
+                </div>
+                <div>
+                    <input type="radio" id="delivery" name="deliveryOption" value="delivery">
+                    <label for="delivery">Envío a domicilio</label>
+                </div>
+            </div>
+            <div id="addressContainer" class="form-group">
+                <label for="address">Ingrese su dirección:</label>
+                <input type="text" id="address" name="address" placeholder="Dirección de envío">
+            </div>
+
+
+            <div class="form-group">
+                <label for="paymentMethod">Método de Pago:</label>
+                <select id="paymentMethod" name="paymentMethod" required>
+                    <option value="">Seleccione un método</option>
+                    <option value="cash">Efectivo</option>
+                    <option value="debitCard">Tarjeta de Débito</option>
+                    <option value="mercadoPago">Mercado Pago</option>
+                </select>
+            </div>
+
+
+            <button type="submit" class="btn-submit">Enviar Pedido</button>
+        </form>
+    </div>
+
+
+    <script>
+        document.getElementById('orderForm').addEventListener('change', function (event) {
+            if (event.target.name === 'deliveryOption') {
+                const addressContainer = document.getElementById('addressContainer');
+                if (event.target.value === 'delivery') {
+                    addressContainer.style.display = 'block';
+                } else {
+                    addressContainer.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

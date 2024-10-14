@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('descarga.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.container {
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+}
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #444;
+}
+
+
+input[type="text"], select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+
+input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+
+.delivery-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
+.btn-submit {
+    background-color: #e91616;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+
+.btn-submit:hover {
+    background-color: #e91616;
+}
+
+
+#addressContainer {
+    display: none;
+    margin-top: 1rem;
+}
+
+
+
+
+Ver_pedidos.php
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Del Pedido</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff5f6d, #ffc371);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            animation: fadeIn 1s ease-out;
+        }
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .success {
+            color: #4caf50;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .error {
+            color: #f44336;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #333;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #555;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resultado Del Pedido</h1>
+        <?php
+        // Conectar a la base de datos
+        $conexion = mysqli_connect("localhost", "root", "", "pedidos");
+
+
+        // Verificar la conexión
+        if (!$conexion) {
+            die("Problemas con la conexión: " . mysqli_connect_error());
+        }
+
+
+        // Preparar los datos del formulario
+        $nombre = mysqli_real_escape_string($conexion, $_POST['firstName']);
+        $apellido = mysqli_real_escape_string($conexion, $_POST['lastName']);
+        $direccion = isset($_POST['address']) ? mysqli_real_escape_string($conexion, $_POST['address']) : 'No aplicable';
+        $opcionEntrega = isset($_POST['deliveryOption']) ? mysqli_real_escape_string($conexion, $_POST['deliveryOption']) : 'No especificado';
+        $metodoPago = mysqli_real_escape_string($conexion, $_POST['paymentMethod']);
+
+
+        // Insertar los datos en la base de datos
+        $query = "INSERT INTO pedido (nombre, apellido, direccion, opcion_entrega, metodo_pago) VALUES ('$nombre', '$apellido', '$direccion', '$opcionEntrega', '$metodoPago')";
+
+
+        if (mysqli_query($conexion, $query)) {
+            echo "<p class='success'>El pedido fue realizado con éxito.</p>";
+        } else {
+            echo "<p class='error'>Error: " . mysqli_error($conexion) . "</p>";
+        }
+
+
+        // Cerrar la conexión
+        mysqli_close($conexion);
+        ?>
+        <a href="index.html">Volver al formulario</a>
+    </div>
+</body>
+</html>
+
+
