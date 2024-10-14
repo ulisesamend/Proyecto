@@ -1,0 +1,8 @@
+<form action="agregar_producto.php" method="post">
+    <input type="text" name="nombre" required>
+    <textarea name="descripcion" required></textarea>
+    <input type="number" name="precio" required>
+    <input type="text" name="imagen">
+    <button type="submit">Agregar Producto</button>
+</form>
+
