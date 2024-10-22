@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultado Del Pedido</title>
+    <title>Comprobante de Pago</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(white, red, black);
+            background: linear-gradient(135deg, #ff5f6d, #ffc371);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,13 +29,7 @@
             margin-bottom: 1rem;
             color: #333;
         }
-        .success {
-            color: #4caf50;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-        .error {
-            color: #f44336;
+        .info {
             font-size: 1.2rem;
             margin-bottom: 1rem;
         }
@@ -61,53 +55,49 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
+        }    
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Resultado Del Pedido</h1>
-        <?php
+<div class="container">
+    <h1>Comprobante de Pago</h1>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Conectar a la base de datos
         $conexion = mysqli_connect("localhost", "root", "", "pedidos");
 
         if (!$conexion) {
             die("Problemas con la conexión: " . mysqli_connect_error());
         }
 
+        // Preparar los datos del formulario
         $nombre = mysqli_real_escape_string($conexion, $_POST['firstName']);
         $apellido = mysqli_real_escape_string($conexion, $_POST['lastName']);
         $direccion = isset($_POST['address']) ? mysqli_real_escape_string($conexion, $_POST['address']) : 'No aplicable';
         $opcionEntrega = isset($_POST['deliveryOption']) ? mysqli_real_escape_string($conexion, $_POST['deliveryOption']) : 'No especificado';
         $metodoPago = mysqli_real_escape_string($conexion, $_POST['paymentMethod']);
 
-        do {
-            $numeroPedido = rand(1, 99);
-            $letraAleatoria = chr(rand(65, 90)); 
-            $idPedido = $numeroPedido . $letraAleatoria;
-
-            $verificarQuery = $conexion->prepare("SELECT * FROM pedido WHERE id_pedido = ?");
-            $verificarQuery->bind_param("s", $idPedido);
-            $verificarQuery->execute();
-            $resultado = $verificarQuery->get_result();
-        } while ($resultado->num_rows > 0);
-
-        $query = "INSERT INTO pedido (nombre, apellido, direccion, opcion_entrega, metodo_pago, id_pedido) VALUES ('$nombre', '$apellido', '$direccion', '$opcionEntrega', '$metodoPago', '$idPedido')";
+        // Insertar los datos en la base de datos
+        $query = "INSERT INTO pedido (nombre, apellido, direccion, opcion_entrega, metodo_pago, ) VALUES ('$nombre', '$apellido', '$direccion', '$opcionEntrega', '$metodoPago')";
 
         if (mysqli_query($conexion, $query)) {
-            echo "<p class='success'>El pedido fue realizado con éxito.</p>";
-            echo "<p>Tu número de pedido es: <strong>$idPedido</strong></p>";
-            echo "<p>Nombre: $nombre $apellido</p>";
-            echo "<p>Dirección: $direccion</p>";
-            echo "<p>Opción de entrega: $opcionEntrega</p>";
-            echo "<p>Método de pago: $metodoPago</p>";
-            echo "<a href='menu.php?idPedido=$idPedido'>Ver Menú de Comidas Rápidas</a>"; // Enlace al menú
+            echo "<p class='info'>El pedido fue realizado con éxito.</p>";
+            echo "<p class='info'><strong>Nombre:</strong> $nombre</p>";
+            echo "<p class='info'><strong>Apellido:</strong> $apellido</p>";
+            echo "<p class='info'><strong>Dirección:</strong> $direccion</p>";
+            echo "<p class='info'><strong>Opción de Entrega:</strong> $opcionEntrega</p>";
+            echo "<p class='info'><strong>Método de Pago:</strong> $metodoPago</p>";
         } else {
             echo "<p class='error'>Error: " . mysqli_error($conexion) . "</p>";
         }
 
+        // Cerrar la conexión
         mysqli_close($conexion);
-        ?>
-        <a href="index.html">Volver al formulario</a>
-    </div>
+    } else {
+        echo "<p class='error'>No se recibieron datos del formulario.</p>";
+    }
+    ?>
+    <a href="index.html">Volver al formulario</a>
+</div>
 </body>
 </html>
