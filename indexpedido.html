@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra</title>
+    <style>
+       body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgb(255, 255, 255), red, black);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            position: relative;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .logo {
+            max-width: 40px; /* Ajusta el tamaño de la imagen */
+            margin-bottom: 20px; /* Espaciado inferior */
+        }
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%; 
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 400px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Finalizar Compra</h2>
+        <img src="images.jpg" alt="Logo" class="logo"> <!-- Logo dentro del formulario -->
+        <form action="pedidos.php" method="post">
+            <div class="form-group">
+                <label for="nombre"><strong>Ingrese nombre y apellido:</strong></label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion"><strong>Ingrese dirección / local:</strong></label>
+                <input type="text" id="direccion" name="direccion" required>
+            </div>
+            <div class="form-group">
+                <label for="pago"><strong>metodo de pago:</strong></label>
+                <select id="pago" name="pago" required>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Transferencia">Transferencia</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-submit">Realizar compra</button>
+        </form>
+    </div>
+</body>
+</html>
