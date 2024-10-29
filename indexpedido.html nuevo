@@ -3,109 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprobante de pago</title>
+    <title>Finalizar Compra</title>
     <style>
-        body {
+       body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff5f6d, #ffc371);
+            background: linear-gradient(rgb(255, 255, 255), red, black);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
             color: #333;
+            position: relative;
         }
         .container {
-            background: #fff;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        h2 {
             text-align: center;
-            max-width: 500px;
-            width: 100%;
-            animation: fadeIn 1s ease-out;
-        }
-        h1 {
-            margin-bottom: 1rem;
             color: #333;
+            margin-bottom: 20px;
         }
-        .info {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+        .logo {
+            max-width: 40px; /* Ajusta el tamaño de la imagen */
+            margin-bottom: 20px; /* Espaciado inferior */
         }
-        .error {
-            color: red;
-            font-size: 1rem;
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%; 
         }
-        a {
-            display: inline-block;
-            text-decoration: none;
-            color: #fff;
-            background-color: #333;
-            padding: 0.75rem 1.5rem;
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
             border-radius: 8px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: border-color 0.3s;
         }
-        a:hover {
-            background-color: #555;
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #007BFF;
+            outline: none;
         }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+        .option-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .radio-input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .direccion-input {
+            display: none; /* Oculto por defecto */
+            margin-top: 10px;
+        }
+        @media (max-width: 400px) {
+            .container {
+                width: 90%;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }    
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>Comprobante de pago</h1>
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Conectar a la base de datos
-        $conexion = mysqli_connect("localhost", "root", "", "pedido");
+    <div class="container">
+        <h2>Finalizar Compra</h2>
+        <img src="images.jpg" alt="Logo" class="logo"> <!-- Logo dentro del formulario -->
+        <form action="pedidos.php" method="post" id="compra-form">
+            <div class="form-group">
+                <label for="nombre"><strong>Ingrese nombre y apellido:</strong></label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group" id="direccion-local-group">
+                <label><strong>Seleccione envio o retiro por local:</strong></label>
+                <div class="option-container">
+                    <input type="radio" id="direccion-radio" name="direccion-local" class="radio-input" onclick="toggleDireccion(true)">
+                    <label for="direccion-radio">Ingresar dirección</label>
+                </div>
+                <div class="option-container">
+                    <input type="radio" id="local-radio" name="direccion-local" class="radio-input" onclick="toggleDireccion(false)">
+                    <label for="local-radio">retirar por local</label>
+                </div>
+            </div>
+            <div class="direccion-input" id="direccion-container">
+                <input type="text" id="direccion" name="direccion" placeholder="Ingrese su dirección">
+            </div>
+            <div class="form-group">
+                <label for="pago"><strong>Método de pago:</strong></label>
+                <select id="pago" name="pago" required>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Transferencia">Transferencia</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-submit">Realizar compra</button>
+        </form>
+    </div>
 
-        if (!$conexion) {
-            die("Problemas con la conexión: " . mysqli_connect_error());
+    <script>
+        function toggleDireccion(isDireccion) {
+            const direccionContainer = document.getElementById('direccion-container');
+            if (isDireccion) {
+                direccionContainer.style.display = 'block'; // Muestra el campo de dirección
+                document.getElementById('direccion').focus(); // Enfoca el campo de dirección
+            } else {
+                direccionContainer.style.display = 'none'; // Oculta el campo de dirección
+            }
         }
-
-        // Preparar los datos del formulario
-        $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
-        $direccion = mysqli_real_escape_string($conexion, $_POST['direccion']);
-        $pago = mysqli_real_escape_string($conexion, $_POST['pago']);
-
-        // Generar un número aleatorio entre 1 y 100
-        $numeroAleatorio = rand(1, 100);
-        // Generar una letra aleatoria (A-Z)
-        $letraAleatoria = chr(mt_rand(65, 90)); // 65 es 'A' y 90 es 'Z'
-        // Crear el comprobante
-        $comprobante = $numeroAleatorio . $letraAleatoria;
-
-        // Insertar los datos en la base de datos
-        $query = "INSERT INTO clientes (nombre, direccion, local , pago, comprobante) VALUES ('$nombre', '$direccion', '$local', '$pago', '$comprobante')";
-
-        if (mysqli_query($conexion, $query)) {
-            echo "<p class='info'><strong>Nombre:</strong> $nombre</p>";
-            echo "<p class='info'><strong>Dirección:</strong> $direccion</p>";
-            echo "<p class='info'><strong>local:</strong> $local</p>";
-            echo "<p class='info'><strong>Método de Pago:</strong> $pago</p>";
-            echo "<p class='info'><strong>Numero:</strong> $comprobante</p>"; // Mostrar el comprobante
-        } else {
-            echo "<p class='error'>Error: " . mysqli_error($conexion) . "</p>";
-        }
-
-        // Cerrar la conexión
-        mysqli_close($conexion);
-    } else {
-        echo "<p class='error'>No se recibieron datos del formulario.</p>";
-    }
-    ?>
-    <a href="index.html">Volver al formulario</a>
-</div>
+    </script>
 </body>
 </html>
