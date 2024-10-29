@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Choris de Marcelo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+
+
+
+    <script src="scripts.js"></script>
+
+
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo" onclick="scrollToHeader()">
+                los chori de marcelo
+            </a> 
+            <nav>
+                <ul>
+                    <li><a href="https://wa.me/1234567890" target="_blank" title="Contáctanos en WhatsApp">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            
+        </div>
+    </header>
+    <script>
+        function scrollToHeader() {
+            // Recargar la página
+            window.location.href = window.location.href.split('#')[0] + '#loschoridemarcelo';
+        }
+        </script>
+    <!-- Banner -->
+    <section class="banner" id="inicio">
+        <div class="banner-content">
+            <h1>¡Bienvenidos a Los Choris de Marcelo!</h1>
+            <p>El mejor sabor a la parrilla que vas encontrar</p>
+            <a href="#menu">Ver Menú</a>
+        </div>
+    </section>
+
+
+
+    <!-- Menú -->
+    <section id="menu">
+        <div class="container">
+            <h2> Menú</h2>
+            <div class="menu-items">
+                <!-- Sándwiches -->
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/choripan.jpg">
+                    <div class="info">
+                        <h3>Choripán Clásico</h3>
+                        <p>Chorizo a la parrilla en pan francés con chimichurri casero.</p>
+                        <span>$1600
+                        </span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/bondiola.jpg" alt="Sándwich de Bondiola">
+                    <div class="info">
+                        <h3>Bondiola</h3>
+                        <p>Jugosa bondiola asada con salsa criolla en pan artesanal.</p>
+                        <span>$3100</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/lomito.jpg" alt="Lomito Completo">
+                    <div class="info">
+                        <h3>Lomito </h3>
+                        <p>Filete de res, tomate, lechuga.</p>
+                        <span>$4300</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/marucha.jpg">
+                    <div class="info">
+                        <h3>Marucha</h3>
+                        <p>pp</p>
+                        <span>$3100</span>   
+                        <button class="comprar-btn">Comprar</button>      
+                    
+                    </div>
+                </div>
+                    <div class="menu-item" data-category="sanduiches">
+                    <img src="img/costilla.jpg">
+                    <div class="info">
+                        <h3>Costilla deshuesada</h3>
+                        <p>Costilla deshueada con tomate, lechuga, chimichurri y mayonesa.</p>
+                        <span>$3100</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="sanduiches">
+                    <img src="img/milanesa.jpg">
+                    <div class="info">
+                        <h3>Milanesa de ternera</h3>
+                        <p>Sanguche de milanesa de ternera con tomate y lechuga.</p>
+                        <span>$4100</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="sanduiches">
+                        <img src="img/hamburguesa.jpg">
+                        <div class="info">
+                            <h3>Hamburguesa</h3>
+                            <p>Hamburguesa con lechuga, tomate y aderezo a eleccion.</p>
+                            <span>$2900</span>
+                            <button class="comprar-btn">Comprar</button>
+                        </div>
+                </div>
+
+
+
+
+
+
+
+                <!-- Bebidas -->
+                <div class="menu-item" data-category="bebidas">
+                    <img src="img/coca500.jpg" alt="Coca-Cola 500ml">
+                    <div class="info">
+                        <h3>Coca-Cola</h3>
+                        <p>Coca-Cola 500ml.</p>
+                        <span>$1500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="bebidas">
+                    <img src="img/fanta.jpg" alt="Fanta">
+                    <div class="info">
+                        <h3>Fanta</h3>
+                        <p>Fanta 500ml.</p>
+                        <span>$1500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="bebidas">
+                    <img src="img/sprite.jpg" alt="Sprite">
+                    <div class="info">
+                        <h3>Fanta</h3>
+                        <p>Sprite 500ml.</p>
+                        <span>$1500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="bebidas">
+                    <img src="img/imperial.jpg" alt="Cerveza">
+                    <div class="info">
+                        <h3>Cerveza Imperial</h3>
+                        <p>Cerveza Imperial Golden 710ml.</p>
+                        <span>$2500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+
+                <div class="menu-item" data-category="papas">
+                    <img src="">
+                    <div class="info">
+                        <h3>Cono de Papas</h3>
+                        <span>$2300</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="papas">
+                    <img src="">
+                    <div class="info">
+                        <h3>Porcion de Papas</h3>
+                        <span>$2900</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <div class="menu-item" data-category="papas">
+                    <img src="">
+                    <div class="info">
+                        <h3>Porcion de Papas con Cheddar</h3>
+                        <span>$3400</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                <!-- Postre -->
+                <div class="menu-item" data-category="postres">
+                    <img src="" alt="Postres">
+                    <div class="info">
+                        <h3>Postres</h3>
+                        <p>Chocotorta, Lemon Pie, Choco oreo, Chaja.</p>
+                        <span>$3500</span>
+                        <button class="comprar-btn">Comprar</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+<br>
+<br>
+
+
+ <!-- Footer -->
+ <footer>
+    <div class="container footer-content">
+        <div style="text-align: center;">
+            <p>&copy; 2024 Los Choris de Marcelo. Todos los derechos reservados.</p>
+        </div>
+        
+        <div class="social-media">
+          
+            <a href="https://www.instagram.com/loschoripanesdemarcelo/" target="_blank" title="Síguenos en Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/1234567890" target="_blank" title="Contáctanos en WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+           
+        </div>
+    </div>
+</footer>
+
+    <div id="carrito-flotante" class="carrito-flotante">
+        <h2><i class="fas fa-shopping-cart"></i> Carrito de Compras</h2>
+        <div id="carrito-items"></div>
+        <div id="carrito-total">Total: $0.00</div>
+        <button id="vaciar-carrito" class="btn-cerrar">Vaciar Carrito</button>
+        <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+        <button id="cerrar-carrito" class="btn-cerrar">Cerrar</button>
+    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">    
+</body>
+</html>
