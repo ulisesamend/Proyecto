@@ -399,62 +399,119 @@ footer p {
     border: 2px solid #ff1919d7;
 }
 
-.carrito-flotante {
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Estilos del carrito flotante */
+#carrito-flotante {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    top: 0;
+    right: 0;
     width: 300px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
+    display: none;
     z-index: 1000;
-    display: none; /* Inicialmente oculto */
-    transition: all 0.3s ease;
+    overflow-y: auto;
 }
 
-.carrito-flotante.show {
-    display: block; /* Mostrar cuando tenga la clase "show" */
-}
-
-.carrito-flotante h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #333;
+#carrito-flotante h2 {
     text-align: center;
+    margin-bottom: 20px;
+}
+
+#carrito-items {
+    margin-bottom: 20px;
 }
 
 .carrito-item {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;  /* Espaciado entre la imagen, nombre y botón */
     margin-bottom: 10px;
-    padding: 5px 0;
-    border-bottom: 1px solid #eee;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.carrito-item img {
+    width: 40px;  /* Tamaño de la imagen */
+    height: 40px; /* Tamaño de la imagen */
+    margin-right: 10px;
+}
+
+.carrito-item p {
+    font-size: 12px;  /* Tamaño pequeño para el nombre */
+    font-weight: bold;
+    margin: 0;
+    text-align: left;  /* Alineación a la izquierda */
+    flex-grow: 1;  /* Deja espacio para el botón */
+}
+
+.carrito-item button {
+    background-color: #dc3545;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.carrito-item button:hover {
+    background-color: #c82333;
 }
 
 #carrito-total {
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
-    margin: 10px 0;
+    margin-bottom: 20px;
 }
 
-.btn-finalizar, #vaciar-carrito, .btn-cerrar {
-    width: 100%; /* Ocupa todo el ancho */
-    margin: 5px 0; /* Espacio entre botones */
+#vaciar-carrito, .btn-finalizar, #cerrar-carrito {
+    width: 100%;
     padding: 10px;
-    background-color: #ff1919d7;
-    color: #fff;
+    font-size: 16px;
+    background-color: #1e7e34;
+    color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
-.btn-finalizar:hover, #vaciar-carrito:hover, .btn-cerrar:hover {
-    background-color: #ff1515;
+#cerrar-carrito {
+    background-color: #dc3545;
 }
- 
-.carrito-flotante h2 i {
-    margin-right: 8px; /* Espacio entre el icono y el texto */
-    color: #ff1919d7; /* Color del icono */
+
+#vaciar-carrito:hover, .btn-finalizar:hover, #cerrar-carrito:hover {
+    background-color: #155724;
+}
+
+#cerrar-carrito:hover {
+    background-color: #c82333;
 }

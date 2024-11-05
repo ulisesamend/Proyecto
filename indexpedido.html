@@ -72,6 +72,19 @@
         .btn-submit:hover {
             background-color: #0056b3;
         }
+        .option-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .radio-input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .direccion-input {
+            display: none; /* Oculto por defecto */
+            margin-top: 10px;
+        }
         @media (max-width: 400px) {
             .container {
                 width: 90%;
@@ -83,17 +96,28 @@
     <div class="container">
         <h2>Finalizar Compra</h2>
         <img src="images.jpg" alt="Logo" class="logo"> <!-- Logo dentro del formulario -->
-        <form action="pedidos.php" method="post">
+        <form action="pedidos.php" method="post" id="compra-form">
             <div class="form-group">
                 <label for="nombre"><strong>Ingrese nombre y apellido:</strong></label>
                 <input type="text" id="nombre" name="nombre" required>
             </div>
-            <div class="form-group">
-                <label for="direccion"><strong>Ingrese dirección / local:</strong></label>
-                <input type="text" id="direccion" name="direccion" required>
+            <div class="form-group" id="direccion-local-group">
+                <label><strong>Seleccione envio o retiro por local:</strong></label>
+                <div class="option-container">
+                    <input type="radio" id="direccion-radio" name="direccion-local" class="radio-input" onclick="toggleDireccion(true)">
+                    <label for="direccion-radio">Ingresar dirección</label>
+                </div>
+                <div class="option-container">
+                    <input type="radio" id="local-radio" name="direccion-local" class="radio-input" onclick="toggleDireccion(false)" value="local">
+                    <label for="local-radio">Retirar por local</label>
+                </div>
+                
+            </div>
+            <div class="direccion-input" id="direccion-container">
+                <input type="text" id="direccion" name="direccion" placeholder="Ingrese su dirección">
             </div>
             <div class="form-group">
-                <label for="pago"><strong>metodo de pago:</strong></label>
+                <label for="pago"><strong>Método de pago:</strong></label>
                 <select id="pago" name="pago" required>
                     <option value="Efectivo">Efectivo</option>
                     <option value="Transferencia">Transferencia</option>
@@ -103,5 +127,17 @@
             <button type="submit" class="btn-submit">Realizar compra</button>
         </form>
     </div>
+
+    <script>
+        function toggleDireccion(isDireccion) {
+            const direccionContainer = document.getElementById('direccion-container');
+            if (isDireccion) {
+                direccionContainer.style.display = 'block'; // Muestra el campo de dirección
+                document.getElementById('direccion').focus(); // Enfoca el campo de dirección
+            } else {
+                direccionContainer.style.display = 'none'; // Oculta el campo de dirección
+            }
+        }
+    </script>
 </body>
 </html>

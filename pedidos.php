@@ -59,51 +59,66 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }    
+        }
     </style>
 </head>
 <body>
+
 <div class="container">
     <h1>Comprobante de pago</h1>
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Conectar a la base de datos
-        $conexion = mysqli_connect("localhost", "root", "", "pedido");
 
-        if (!$conexion) {
-            die("Problemas con la conexión: " . mysqli_connect_error());
-        }
+    
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Conectar a la base de datos
+    $conexion = mysqli_connect("localhost", "root", "", "pedido");
 
-        // Preparar los datos del formulario
-        $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
-        $direccion = mysqli_real_escape_string($conexion, $_POST['direccion']);
-        $pago = mysqli_real_escape_string($conexion, $_POST['pago']);
-
-        // Generar un número aleatorio entre 1 y 100
-        $numeroAleatorio = rand(1, 100);
-        // Generar una letra aleatoria (A-Z)
-        $letraAleatoria = chr(mt_rand(65, 90)); // 65 es 'A' y 90 es 'Z'
-        // Crear el comprobante
-        $comprobante = $numeroAleatorio . $letraAleatoria;
-
-        // Insertar los datos en la base de datos
-        $query = "INSERT INTO clientes (nombre, direccion, pago, comprobante) VALUES ('$nombre', '$direccion', '$pago', '$comprobante')";
-
-        if (mysqli_query($conexion, $query)) {
-            echo "<p class='info'><strong>Nombre:</strong> $nombre</p>";
-            echo "<p class='info'><strong>Dirección:</strong> $direccion</p>";
-            echo "<p class='info'><strong>Método de Pago:</strong> $pago</p>";
-            echo "<p class='info'><strong>Numero:</strong> $comprobante</p>"; // Mostrar el comprobante
-        } else {
-            echo "<p class='error'>Error: " . mysqli_error($conexion) . "</p>";
-        }
-
-        // Cerrar la conexión
-        mysqli_close($conexion);
-    } else {
-        echo "<p class='error'>No se recibieron datos del formulario.</p>";
+    if (!$conexion) {
+        die("Problemas con la conexión: " . mysqli_connect_error());
     }
-    ?>
+
+    // Preparar los datos del formulario
+    $nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
+    $direccion = mysqli_real_escape_string($conexion, $_POST['direccion']);
+    
+    // Cambiar la lógica para asignar 'Local' + 'R' si se selecciona la opción de retirar
+    $local = isset($_POST['direccion-local']) && $_POST['direccion-local'] === 'local' ? 'retiro' : ''; 
+    $pago = mysqli_real_escape_string($conexion, $_POST['pago']);
+
+    // Generar un número aleatorio entre 1 y 100
+    $numeroAleatorio = rand(1, 100);
+    // Generar una letra aleatoria (A-Z)
+    $letraAleatoria = chr(mt_rand(65, 90)); // 65 es 'A' y 90 es 'Z'
+    // Crear el comprobante
+    $comprobante = $numeroAleatorio . $letraAleatoria;
+
+    // Insertar los datos en la base de datos
+    $query = "INSERT INTO clientes (nombre, direccion, local, pago, comprobante) VALUES ('$nombre', '$direccion', '$local', '$pago', '$comprobante')";
+
+    if (mysqli_query($conexion, $query)) {
+        echo "<p class='info'><strong>Nombre:</strong> $nombre</p>";
+        echo "<p class='info'><strong>Dirección:</strong> $direccion</p>";
+
+        // Mostrar "R" junto a "local" si se ha seleccionado "Retirar por local"
+        if (isset($_POST['direccion-local']) && $_POST['direccion-local'] === 'local') {
+            echo "<p class='info'><strong>Local:</strong> $local</p>";
+        } else {
+            echo "<p class='info'><strong>Local:</strong> $local</p>";
+        }
+
+        echo "<p class='info'><strong>Método de Pago:</strong> $pago</p>";
+        echo "<p class='info'><strong>Número:</strong> $comprobante</p>"; // Mostrar el comprobante
+    } else {
+        echo "<p class='error'>Error: " . mysqli_error($conexion) . "</p>";
+    }
+
+    // Cerrar la conexión
+    mysqli_close($conexion);
+} else {
+    echo "<p class='error'>No se recibieron datos del formulario.</p>";
+}
+?>
+
     <a href="index.html">Volver al formulario</a>
 </div>
 </body>

@@ -28,8 +28,8 @@ if ($search) {
 $result = mysqli_query($conexion, $query);
 
 // Manejo del botón "Pedido Listo"
-if (isset($_GET['id'])) {
-    $id = intval($_GET['id']);
+if (isset($_POST['pedido_id'])) {
+    $id = intval($_POST['pedido_id']);
     // Actualizar el estado del pedido
     $updateQuery = "UPDATE clientes SET estado='Listo' WHERE id=$id";
     mysqli_query($conexion, $updateQuery);
@@ -168,10 +168,14 @@ if (isset($_GET['id'])) {
             <td><?php echo $row['pago']; ?></td>
             <td><?php echo $row['comprobante']; ?></td>
             <td>
+                <!-- Corrección: Mostrar el botón según el estado -->
                 <?php if ($row['estado'] == 'Listo'): ?>
-                    <button class="disabled" disabled>Pedido Listo</button>
+                    <button type="button" class="disabled" disabled>Pedido Listo</button> <!-- Botón deshabilitado -->
                 <?php else: ?>
-                    <a href="?id=<?php echo $row['id']; ?>" class="button">Marcar como Listo</a>
+                    <form method="POST" action="admin.php" style="display:inline;">
+                        <input type="hidden" name="pedido_id" value="<?php echo $row['id']; ?>">
+                        <button type="submit">Marcar como Listo</button>
+                    </form>
                 <?php endif; ?>
             </td>
         </tr>
